@@ -3,147 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hamster Clicker - Кликер хомяка</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Охамсмони - Кликер игра</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             user-select: none;
-            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Nunito', sans-serif;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: #333;
+            background: linear-gradient(135deg, #0c2461, #1e3799);
+            color: white;
             min-height: 100vh;
             padding: 20px;
             overflow-x: hidden;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
         }
 
-        header {
+        .header {
             text-align: center;
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            margin-bottom: 10px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #3498db;
+            margin-bottom: 25px;
         }
 
-        h1 {
-            font-family: 'Comic Neue', cursive;
+        .header h1 {
             font-size: 2.8rem;
-            color: #FF6B6B;
-            text-shadow: 3px 3px 0 #FFD93D;
             margin-bottom: 5px;
+            color: #f1c40f;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
 
-        .subtitle {
+        .header .subtitle {
+            color: #7f8c8d;
             font-size: 1.2rem;
-            color: #6a11cb;
-            font-weight: 600;
         }
 
-        .game-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            width: 100%;
-            justify-content: center;
-        }
-
-        .clicker-section {
-            flex: 1;
-            min-width: 300px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 25px;
+        .main-content {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            gap: 30px;
         }
 
-        .shop-section {
-            flex: 1;
-            min-width: 300px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            overflow-y: auto;
-            max-height: 600px;
-        }
-
-        .stats {
+        .stats-row {
             display: flex;
-            justify-content: space-around;
-            width: 100%;
-            margin-bottom: 25px;
-            background-color: #f8f9fa;
+            justify-content: space-between;
+            background-color: rgba(52, 152, 219, 0.2);
             padding: 15px;
             border-radius: 15px;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #3498db;
         }
 
-        .stat-item {
+        .stat {
             text-align: center;
+            flex: 1;
+        }
+
+        .stat-title {
+            font-size: 0.9rem;
+            color: #bdc3c7;
+            margin-bottom: 5px;
         }
 
         .stat-value {
             font-size: 1.8rem;
-            font-weight: 800;
-            color: #6a11cb;
+            font-weight: bold;
+            color: #f1c40f;
         }
 
-        .stat-label {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 5px;
-        }
-
-        .hamster-container {
+        .legendary-section {
+            background: linear-gradient(45deg, #8e44ad, #9b59b6);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
             position: relative;
-            width: 250px;
-            height: 250px;
-            margin: 20px 0;
-            cursor: pointer;
-            transition: transform 0.1s;
+            overflow: hidden;
+            border: 2px solid #f1c40f;
         }
 
-        .hamster {
-            width: 100%;
+        .legendary-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #f1c40f;
+        }
+
+        .legendary-value {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .level-indicator {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            color: #2ecc71;
+        }
+
+        .energy-section {
+            background-color: rgba(46, 204, 113, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #2ecc71;
+        }
+
+        .energy-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #2ecc71;
+        }
+
+        .energy-bar-container {
+            height: 30px;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .energy-bar {
             height: 100%;
-            background: url('https://cdn-icons-png.flaticon.com/512/1998/1998610.png') center/contain no-repeat;
-            filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3));
-            transition: transform 0.1s;
+            background: linear-gradient(90deg, #2ecc71, #1abc9c);
+            width: 100%;
+            border-radius: 15px;
+            transition: width 0.3s;
         }
 
-        .hamster:active {
+        .energy-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f1c40f;
+        }
+
+        .tap-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            border: 2px dashed #3498db;
+            position: relative;
+            min-height: 300px;
+        }
+
+        .tap-button {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #f1c40f, #e67e22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #0c2461;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), inset 0 -5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.1s, box-shadow 0.1s;
+            position: relative;
+            overflow: hidden;
+            border: 5px solid #d35400;
+        }
+
+        .tap-button:active {
             transform: scale(0.95);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5), inset 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .click-effect {
+        .tap-button-text {
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .tap-earn {
             position: absolute;
-            font-size: 2rem;
-            font-weight: 800;
-            color: #FFD93D;
-            text-shadow: 2px 2px 0 #FF6B6B;
+            color: #f1c40f;
+            font-weight: bold;
+            font-size: 1.8rem;
             pointer-events: none;
-            animation: floatUp 1s forwards;
             z-index: 10;
+            animation: floatUp 1s ease-out forwards;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
         }
 
         @keyframes floatUp {
@@ -157,455 +215,396 @@
             }
         }
 
-        .shop-title {
-            font-family: 'Comic Neue', cursive;
-            font-size: 2rem;
-            color: #6a11cb;
-            margin-bottom: 20px;
-            text-align: center;
-            text-shadow: 2px 2px 0 #FFD93D;
-        }
-
-        .upgrades-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .upgrade-item {
-            background: linear-gradient(to right, #f8f9fa, #e9ecef);
-            border-radius: 15px;
-            padding: 15px;
+        .navigation {
             display: flex;
             justify-content: space-between;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .nav-button {
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            color: #bdc3c7;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 10px;
             transition: all 0.3s;
-            border-left: 5px solid #6a11cb;
-        }
-
-        .upgrade-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .upgrade-info {
             flex: 1;
+            text-align: center;
         }
 
-        .upgrade-name {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: #333;
-            margin-bottom: 5px;
+        .nav-button:hover {
+            background-color: rgba(52, 152, 219, 0.2);
+            color: white;
         }
 
-        .upgrade-desc {
-            font-size: 0.9rem;
-            color: #666;
+        .nav-button i {
+            font-size: 1.8rem;
             margin-bottom: 8px;
         }
 
-        .upgrade-level {
-            font-size: 0.9rem;
-            color: #6a11cb;
-            font-weight: 600;
-        }
-
-        .upgrade-price {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: #FF6B6B;
-            margin-right: 15px;
-        }
-
-        .buy-btn {
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 10px 20px;
+        .nav-button span {
             font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
         }
 
-        .buy-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(106, 17, 203, 0.6);
-        }
-
-        .buy-btn:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .multiplier-display {
-            background-color: #FFD93D;
-            color: #333;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-weight: 800;
-            font-size: 1.2rem;
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(255, 217, 61, 0.5);
-        }
-
-        .click-instruction {
-            margin-top: 20px;
-            font-size: 1.1rem;
-            color: #666;
-            text-align: center;
-            background-color: #f8f9fa;
-            padding: 10px;
-            border-radius: 10px;
-            width: 100%;
-        }
-
-        .click-instruction span {
-            color: #FF6B6B;
-            font-weight: 800;
-        }
-
-        footer {
-            margin-top: 20px;
-            text-align: center;
+        .multiplier {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(231, 76, 60, 0.8);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
             color: white;
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 1.2rem;
         }
 
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .game-container {
-                flex-direction: column;
-            }
-            
-            .clicker-section, .shop-section {
-                width: 100%;
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-        }
-
-        /* Анимация для нового улучшения */
-        .new-upgrade-notification {
+        .notification {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: linear-gradient(to right, #FF6B6B, #FF8E53);
+            background-color: #2ecc71;
             color: white;
-            padding: 15px 25px;
+            padding: 15px;
             border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.5);
-            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             z-index: 100;
-            animation: slideIn 0.5s ease-out, fadeOut 0.5s ease-in 2.5s forwards;
+            transform: translateX(150%);
+            transition: transform 0.5s;
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+        .notification.show {
+            transform: translateX(0);
         }
 
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
             }
-            to {
-                opacity: 0;
-                visibility: hidden;
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .stats-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .tap-button {
+                width: 170px;
+                height: 170px;
+            }
+            
+            .navigation {
+                flex-wrap: wrap;
+            }
+            
+            .nav-button {
+                width: 45%;
+                margin-bottom: 10px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Hamster Clicker</h1>
-            <div class="subtitle">Кликай по хомяку, зарабатывай энергию и улучшай множитель!</div>
-        </header>
-
-        <div class="game-container">
-            <section class="clicker-section">
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-value" id="energy">0</div>
-                        <div class="stat-label">Энергия</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="multiplier">1x</div>
-                        <div class="stat-label">Множитель</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="clicks">0</div>
-                        <div class="stat-label">Всего кликов</div>
-                    </div>
-                </div>
-
-                <div class="hamster-container" id="hamster">
-                    <div class="hamster"></div>
-                </div>
-
-                <div class="multiplier-display">
-                    Текущий множитель: <span id="currentMultiplier">1x</span>
-                </div>
-
-                <div class="click-instruction">
-                    Кликай по хомяку <span>как можно быстрее</span> - нет задержки даже при 100000 кликах в секунду!
-                </div>
-            </section>
-
-            <section class="shop-section">
-                <h2 class="shop-title">Магазин улучшений</h2>
-                <div class="upgrades-list" id="upgradesList">
-                    <!-- Улучшения будут добавляться с помощью JS -->
-                </div>
-            </section>
+        <div class="header">
+            <h1>Охамсмони (CEO)</h1>
+            <div class="subtitle">Зарабатывай монеты одним кликом!</div>
         </div>
-
-        <footer>
-            Hamster Clicker - мини-приложение для быстрого кликинга. Улучшайте множитель до 10x!
-        </footer>
+        
+        <div class="multiplier" id="multiplier">Множитель: x1</div>
+        
+        <div class="main-content">
+            <div class="stats-row">
+                <div class="stat">
+                    <div class="stat-title">Заработок за клик</div>
+                    <div class="stat-value" id="earn-per-tap">+15</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-title">Монет для уровня</div>
+                    <div class="stat-value" id="coins-to-level">50M</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-title">Прибыль в час</div>
+                    <div class="stat-value" id="profit-per-hour">+31.93K</div>
+                </div>
+            </div>
+            
+            <div class="legendary-section">
+                <div class="legendary-title">Легендарный ></div>
+                <div class="legendary-value" id="legendary-value">11,439,211</div>
+                <div class="level-indicator" id="level-indicator">Уровень 7/9</div>
+            </div>
+            
+            <div class="energy-section">
+                <div class="energy-title">Энергия</div>
+                <div class="energy-bar-container">
+                    <div class="energy-bar" id="energy-bar"></div>
+                </div>
+                <div class="energy-text" id="energy-text">7500 / 7500</div>
+            </div>
+            
+            <div class="tap-section">
+                <div class="tap-button" id="tap-button">
+                    <div class="tap-button-text">КЛИК!</div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <div class="nav-button" id="exchange-btn">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Обмен</span>
+                </div>
+                <div class="nav-button" id="mine-btn">
+                    <i class="fas fa-dungeon"></i>
+                    <span>Шахта</span>
+                </div>
+                <div class="nav-button" id="friends-btn">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Друзья</span>
+                </div>
+                <div class="nav-button" id="earn-btn">
+                    <i class="fas fa-coins"></i>
+                    <span>Заработать</span>
+                </div>
+                <div class="nav-button" id="antitrap-btn">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Анти-ловушка</span>
+                </div>
+            </div>
+        </div>
     </div>
+    
+    <div class="notification" id="notification">Данные сохранены!</div>
 
     <script>
-        // Игровые переменные
-        let energy = 0;
-        let multiplier = 1;
-        let totalClicks = 0;
-        let upgradeLevel = 1;
-        const maxMultiplier = 10;
-        
-        // Массив улучшений
-        const upgrades = [
-            {
-                id: 1,
-                name: "Энергетические семечки",
-                description: "Увеличивают множитель на 0.5x",
-                basePrice: 50,
-                price: 50,
-                level: 0,
-                maxLevel: 5,
-                multiplierIncrease: 0.5
-            },
-            {
-                id: 2,
-                name: "Спортивное колесо",
-                description: "Увеличивают множитель на 1x",
-                basePrice: 200,
-                price: 200,
-                level: 0,
-                maxLevel: 3,
-                multiplierIncrease: 1
-            },
-            {
-                id: 3,
-                name: "Золотой хомяк",
-                description: "Увеличивают множитель на 2x",
-                basePrice: 1000,
-                price: 1000,
-                level: 0,
-                maxLevel: 1,
-                multiplierIncrease: 2
-            }
-        ];
+        // Игровые данные
+        let gameData = {
+            coins: 11439211,
+            coinsPerClick: 15,
+            energy: 7500,
+            maxEnergy: 7500,
+            energyPerClick: 100,
+            energyRegenRate: 10, // энергия в секунду
+            level: 7,
+            maxLevel: 9,
+            coinsToNextLevel: 50000000,
+            profitPerHour: 31930,
+            multiplier: 1,
+            lastSave: Date.now()
+        };
 
-        // DOM элементы
-        const energyElement = document.getElementById('energy');
+        // Элементы DOM
+        const tapButton = document.getElementById('tap-button');
+        const energyBar = document.getElementById('energy-bar');
+        const energyText = document.getElementById('energy-text');
+        const legendaryValue = document.getElementById('legendary-value');
+        const earnPerTap = document.getElementById('earn-per-tap');
+        const coinsToLevel = document.getElementById('coins-to-level');
+        const profitPerHour = document.getElementById('profit-per-hour');
+        const levelIndicator = document.getElementById('level-indicator');
         const multiplierElement = document.getElementById('multiplier');
-        const clicksElement = document.getElementById('clicks');
-        const currentMultiplierElement = document.getElementById('currentMultiplier');
-        const hamsterElement = document.getElementById('hamster');
-        const upgradesListElement = document.getElementById('upgradesList');
-
-        // Инициализация магазина
-        function initShop() {
-            upgradesListElement.innerHTML = '';
+        const notification = document.getElementById('notification');
+        
+        // Инициализация
+        function initGame() {
+            loadGameData();
+            updateUI();
             
-            upgrades.forEach(upgrade => {
-                const upgradeElement = document.createElement('div');
-                upgradeElement.className = 'upgrade-item';
-                upgradeElement.id = `upgrade-${upgrade.id}`;
-                
-                upgradeElement.innerHTML = `
-                    <div class="upgrade-info">
-                        <div class="upgrade-name">${upgrade.name}</div>
-                        <div class="upgrade-desc">${upgrade.description}</div>
-                        <div class="upgrade-level">Уровень: ${upgrade.level}/${upgrade.maxLevel}</div>
-                    </div>
-                    <div class="upgrade-price">${upgrade.price}</div>
-                    <button class="buy-btn" onclick="buyUpgrade(${upgrade.id})" 
-                            ${energy < upgrade.price || upgrade.level >= upgrade.maxLevel ? 'disabled' : ''}>
-                        ${upgrade.level >= upgrade.maxLevel ? 'Макс.' : 'Купить'}
-                    </button>
-                `;
-                
-                upgradesListElement.appendChild(upgradeElement);
-            });
+            // Авто-восстановление энергии
+            setInterval(regenerateEnergy, 1000);
+            
+            // Авто-сохранение каждые 1000мс (1 секунда)
+            setInterval(saveGameData, 1000);
+            
+            // Обновление прибыли в час каждые 10 секунд
+            setInterval(updateProfitPerHour, 10000);
         }
-
-        // Покупка улучшения
-        function buyUpgrade(upgradeId) {
-            const upgrade = upgrades.find(u => u.id === upgradeId);
+        
+        // Загрузка данных из localStorage
+        function loadGameData() {
+            const savedData = localStorage.getItem('ohamsmoniGameData');
+            if (savedData) {
+                const parsedData = JSON.parse(savedData);
+                // Объединяем сохраненные данные с дефолтными (на случай добавления новых полей)
+                gameData = {...gameData, ...parsedData};
+                console.log('Данные игры загружены');
+            }
+        }
+        
+        // Сохранение данных в localStorage
+        function saveGameData() {
+            gameData.lastSave = Date.now();
+            localStorage.setItem('ohamsmoniGameData', JSON.stringify(gameData));
             
-            if (!upgrade || energy < upgrade.price || upgrade.level >= upgrade.maxLevel) {
+            // Показываем уведомление о сохранении (только раз в 10 секунд)
+            if (Math.random() > 0.7) {
+                showNotification('Данные сохранены!');
+            }
+        }
+        
+        // Показать уведомление
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+        
+        // Обновление интерфейса
+        function updateUI() {
+            // Обновляем значения
+            legendaryValue.textContent = formatNumber(gameData.coins);
+            earnPerTap.textContent = `+${gameData.coinsPerClick * gameData.multiplier}`;
+            coinsToLevel.textContent = `${formatNumber(gameData.coinsToNextLevel)}`;
+            profitPerHour.textContent = `+${formatNumber(gameData.profitPerHour)}`;
+            levelIndicator.textContent = `Уровень ${gameData.level}/${gameData.maxLevel}`;
+            
+            // Обновляем энергию
+            const energyPercent = (gameData.energy / gameData.maxEnergy) * 100;
+            energyBar.style.width = `${energyPercent}%`;
+            energyText.textContent = `${formatNumber(gameData.energy)} / ${formatNumber(gameData.maxEnergy)}`;
+            
+            // Обновляем множитель
+            multiplierElement.textContent = `Множитель: x${gameData.multiplier}`;
+        }
+        
+        // Форматирование чисел с разделителями
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        
+        // Регенерация энергии
+        function regenerateEnergy() {
+            if (gameData.energy < gameData.maxEnergy) {
+                gameData.energy += gameData.energyRegenRate;
+                if (gameData.energy > gameData.maxEnergy) {
+                    gameData.energy = gameData.maxEnergy;
+                }
+                updateUI();
+            }
+        }
+        
+        // Обновление прибыли в час
+        function updateProfitPerHour() {
+            // Прибыль зависит от текущего уровня и множителя
+            gameData.profitPerHour = Math.floor(15000 * gameData.level * gameData.multiplier * (1 + Math.random() * 0.2));
+            updateUI();
+        }
+        
+        // Обработчик клика
+        let lastTapTime = 0;
+        const tapCooldown = 50; // Минимальное время между кликами (50мс)
+        
+        tapButton.addEventListener('click', function(e) {
+            const currentTime = Date.now();
+            
+            // Проверка на слишком быстрые клики (анти-маштирование)
+            if (currentTime - lastTapTime < tapCooldown) {
                 return;
             }
             
-            // Списываем энергию
-            energy -= upgrade.price;
-            updateEnergy();
+            lastTapTime = currentTime;
             
-            // Увеличиваем уровень улучшения
-            upgrade.level++;
-            
-            // Увеличиваем множитель
-            multiplier += upgrade.multiplierIncrease;
-            if (multiplier > maxMultiplier) {
-                multiplier = maxMultiplier;
+            // Проверка энергии
+            if (gameData.energy < gameData.energyPerClick) {
+                showNotification('Недостаточно энергии!');
+                return;
             }
             
-            // Увеличиваем цену для следующего уровня
-            if (upgrade.level < upgrade.maxLevel) {
-                upgrade.price = Math.floor(upgrade.basePrice * Math.pow(1.5, upgrade.level));
-            }
+            // Расход энергии
+            gameData.energy -= gameData.energyPerClick;
             
-            // Обновляем отображение
-            updateMultiplier();
-            initShop();
+            // Начисление монет
+            const coinsEarned = gameData.coinsPerClick * gameData.multiplier;
+            gameData.coins += coinsEarned;
             
-            // Показываем уведомление
-            showNotification(`Улучшено: ${upgrade.name}! Множитель: +${upgrade.multiplierIncrease}x`);
-        }
-
-        // Обновление отображения энергии
-        function updateEnergy() {
-            energyElement.textContent = Math.floor(energy);
-        }
-
-        // Обновление отображения множителя
-        function updateMultiplier() {
-            multiplierElement.textContent = `${multiplier.toFixed(1)}x`;
-            currentMultiplierElement.textContent = `${multiplier.toFixed(1)}x`;
-        }
-
-        // Обновление отображения кликов
-        function updateClicks() {
-            clicksElement.textContent = totalClicks;
-        }
-
-        // Показать уведомление
-        function showNotification(message) {
-            // Удаляем предыдущие уведомления
-            const existingNotification = document.querySelector('.new-upgrade-notification');
-            if (existingNotification) {
-                existingNotification.remove();
-            }
+            // Создаем анимацию "+N"
+            createCoinAnimation(e, coinsEarned);
             
-            // Создаем новое уведомление
-            const notification = document.createElement('div');
-            notification.className = 'new-upgrade-notification';
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            // Автоматически удаляем через 3 секунды
+            // Анимация кнопки
+            tapButton.style.transform = 'scale(0.95)';
             setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.remove();
-                }
-            }, 3000);
-        }
-
-        // Создание анимации клика
-        function createClickEffect(x, y, value) {
-            const clickEffect = document.createElement('div');
-            clickEffect.className = 'click-effect';
-            clickEffect.textContent = `+${value}`;
-            clickEffect.style.left = `${x}px`;
-            clickEffect.style.top = `${y}px`;
+                tapButton.style.transform = 'scale(1)';
+            }, 100);
             
-            document.querySelector('.hamster-container').appendChild(clickEffect);
+            // Проверка уровня
+            checkLevelUp();
             
-            // Удаляем элемент после завершения анимации
+            // Обновление интерфейса
+            updateUI();
+        });
+        
+        // Создание анимации "+N"
+        function createCoinAnimation(event, amount) {
+            const tapX = event.clientX || event.touches[0].clientX;
+            const tapY = event.clientY || event.touches[0].clientY;
+            
+            const plusElement = document.createElement('div');
+            plusElement.className = 'tap-earn';
+            plusElement.textContent = `+${amount}`;
+            plusElement.style.left = `${tapX - 30}px`;
+            plusElement.style.top = `${tapY - 30}px`;
+            
+            document.body.appendChild(plusElement);
+            
+            // Удаляем элемент после анимации
             setTimeout(() => {
-                if (clickEffect.parentNode) {
-                    clickEffect.remove();
-                }
+                plusElement.remove();
             }, 1000);
         }
-
-        // Обработчик клика по хомяку
-        function handleHamsterClick(e) {
-            // Получаем координаты клика
-            const rect = hamsterElement.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            // Рассчитываем полученную энергию
-            const energyGained = 10 * multiplier;
-            
-            // Увеличиваем энергию и счетчик кликов
-            energy += energyGained;
-            totalClicks++;
-            
-            // Обновляем отображение
-            updateEnergy();
-            updateClicks();
-            
-            // Создаем анимацию клика
-            createClickEffect(x, y, energyGained.toFixed(1));
-            
-            // Минимальная анимация хомяка
-            hamsterElement.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                hamsterElement.style.transform = 'scale(1)';
-            }, 50);
-        }
-
-        // Оптимизация для быстрых кликов - используем pointer events для минимальной задержки
-        hamsterElement.addEventListener('pointerdown', handleHamsterClick);
-        hamsterElement.addEventListener('touchstart', handleHamsterClick);
         
-        // Для поддержки обычных кликов мышью
-        hamsterElement.addEventListener('mousedown', handleHamsterClick);
-
-        // Предотвращаем контекстное меню на хомяке
-        hamsterElement.addEventListener('contextmenu', (e) => e.preventDefault());
-
-        // Инициализация игры
-        function initGame() {
-            updateEnergy();
-            updateMultiplier();
-            updateClicks();
-            initShop();
-            
-            // Запускаем авто-кликер через 30 секунд игры (бонусная функция)
-            setTimeout(() => {
-                if (totalClicks > 50) {
-                    showNotification("Разблокирован авто-кликер! +1 энергия/сек");
-                    setInterval(() => {
-                        energy += 1;
-                        updateEnergy();
-                    }, 1000);
+        // Проверка повышения уровня
+        function checkLevelUp() {
+            if (gameData.coins >= gameData.coinsToNextLevel && gameData.level < gameData.maxLevel) {
+                gameData.level++;
+                gameData.coinsToNextLevel = Math.floor(gameData.coinsToNextLevel * 2.5);
+                gameData.coinsPerClick = Math.floor(gameData.coinsPerClick * 1.5);
+                gameData.maxEnergy = Math.floor(gameData.maxEnergy * 1.3);
+                gameData.energy = gameData.maxEnergy;
+                
+                // Случайное увеличение множителя (макс x10)
+                if (gameData.multiplier < 10 && Math.random() > 0.7) {
+                    gameData.multiplier++;
+                    showNotification(`Множитель увеличен до x${gameData.multiplier}!`);
                 }
-            }, 30000);
+                
+                showNotification(`Поздравляем! Вы достигли уровня ${gameData.level}!`);
+                updateUI();
+            }
         }
-
-        // Запускаем игру при загрузке страницы
-        window.onload = initGame;
+        
+        // Обработчики кнопок навигации
+        document.getElementById('exchange-btn').addEventListener('click', function() {
+            showNotification('Раздел "Обмен" скоро будет доступен!');
+        });
+        
+        document.getElementById('mine-btn').addEventListener('click', function() {
+            showNotification('Раздел "Шахта" скоро будет доступен!');
+        });
+        
+        document.getElementById('friends-btn').addEventListener('click', function() {
+            showNotification('Раздел "Друзья" скоро будет доступен!');
+        });
+        
+        document.getElementById('earn-btn').addEventListener('click', function() {
+            showNotification('Раздел "Заработать" скоро будет доступен!');
+        });
+        
+        document.getElementById('antitrap-btn').addEventListener('click', function() {
+            showNotification('Раздел "Анти-ловушка" скоро будет доступен!');
+        });
+        
+        // Запуск игры
+        window.addEventListener('DOMContentLoaded', initGame);
     </script>
 </body>
-                </html>
+</html>
